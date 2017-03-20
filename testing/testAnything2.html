@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Signon</title>
+
+
+<head>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MIΛ VETRINΛ</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+  <!-- <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.vertical-tabs.min.css"> -->
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/spectrum.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100" rel="stylesheet">
+  </head>
+<body>
+
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="index.html"><span class="byname"> Impulso</span></a>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="hidden" id="sign-out"><a href="#"><span class="glyphicon glyphicon-log-out"></span> Sign Out</a></li>
+
+        <li>
+          <a class="sign-in bd-button" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-user"></span> Login</a>
+        </li>
+        <!-- <li id="sign-in"><a href="#"><span class="glyphicon glyphicon-user"></span> Login</a></li> -->
+      </ul>
+    </div>
+  </nav>
+  <div class="container-flex mod-flex">
+    <div id="user-container">
+      <div id="user-pic"></div>
+      <div id="user-name"></div>
+    </div>
+    <br>
+	<h1 class="logo-font">MIΛ VETRINΛ</h1>    
+
+
+
+
+
+<!-- login Modal Large modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="LargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    ×</button>
+                <h4 class="modal-title" id="loginModalLabel">
+                    Login/Registration - <a href="https://www.miavetrina">miavetrina.com</a></h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6" style="border-right: 1px dotted #C2C2C2;padding-right: 30px;">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs">
+                            <li class="active" id="li-login"><a href="#login" data-toggle="tab">Login</a></li>
+                            <li id="li-reg"><a href="#registration" data-toggle="tab">Registration</a></li>
+                        </ul>
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                        	
+                            <div class="tab-pane active" id="login">
+                                <form role="form" class="form-horizontal">
+                                <div class="form-group">
+                                    <label for="email" class="col-sm-3 control-label">
+                                        Email</label>
+                                    <div class="col-sm-9">
+                                        <input type="email" class="form-control" id="email1" placeholder="Email" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1" class="col-sm-3 control-label">
+                                        Password</label>
+                                    <div class="col-sm-9">
+                                        <input type="email" class="form-control" id="exampleInputPassword1" placeholder="Password" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <button type="submit" class="btn btn-primary btn-sm">
+                                            Submit</button>
+                                        <a href="javascript:;">Forgot your password?</a>
+                                    </div>
+                                </div>
+                                </form>
+                            </div>
+
+                            <div class="tab-pane" id="registration">
+                                <form role="form" class="form-horizontal">
+                                <div class="form-group">
+                                    <label for="email" class="col-sm-3 control-label">
+                                        User Name</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="name" placeholder="User Name" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email" class="col-sm-3 control-label">
+                                        First Name</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="first" placeholder="First Name" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email" class="col-sm-3 control-label">
+                                        Last Name</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="last" placeholder="Last Name" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email" class="col-sm-3 control-label">
+                                        Email</label>
+                                    <div class="col-sm-9">
+                                        <input type="email" class="form-control" id="email" name="email" placeholder="Email" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password" class="col-sm-3 control-label">
+                                        Password</label>
+                                    <div class="col-sm-9">
+                                        <input type="password" class="form-control" id="password" name="password" placeholder="Password" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <button type="button" class="btn btn-primary btn-sm">
+                                            Save and Continue</button>
+                                        <button type="button" class="btn btn-default btn-sm">
+                                            Cancel</button>
+                                    </div>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div id="OR" class="hidden-xs">
+                            OR</div>
+                    </div>
+					<!-- Reason to  Register -->
+					<div class="col-md-6">
+						<p class="lead">Register now for <span class="text-success">FREE</span></p>
+						<ul class="list-unstyled" style="line-height: 2">
+							  <li><span class="fa fa-check text-success"></span> Design &amp; Save your Showrooms to your Account
+							  </li>
+							  <li><span class="fa fa-check text-success"></span> View and Edit your Showrooms on any computer</li>
+							  <li><span class="fa fa-check text-success"></span> Save your Showrooms as an image file to your computer
+							  </li>
+							  <li><span class="fa fa-check text-success"></span> Add your own design elements (Rooms, Art, Furniture)
+							  </li>
+						</ul>
+
+						<p><button class="btn btn-info btn-block" id="btnRegister">Yes please, register now!</button></p>
+
+					</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END Modal Login Large  -->
+
+
+
+
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <!--<script src="assets/js/jquery.ui.rotatable.js"></script>-->
+  <script src="assets/js/jcanvas.min.js"></script>
+  <script src="assets/js/jcanvas-handles.min.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/spectrum.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
+
+
+<script> 
+$('#btnRegister').on('click', function() {
+
+    //$('#loginModal').modal('show');
+    $('#li-reg').addClass("active");
+    $("#li-login").removeClass("active");
+    $('#registration').addClass("active");
+    $("#login").removeClass("active");
+
+});
+
+</script> 
+
+
+</body>
+</html>
+
+
+
+
+

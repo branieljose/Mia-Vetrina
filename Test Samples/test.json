@@ -1,0 +1,15 @@
+{
+  "version": "1.0",
+  "groups": [],
+  "colors": [{
+    "name": "RGB Red",
+    "model": "RGB",
+    "color": [1, 0, 0],
+    "type": "global"
+  }, {
+    "name": "RGB Yellow",
+    "model": "RGB",
+    "color": [1, 1, 0],
+    "type": "global"
+  }]
+}

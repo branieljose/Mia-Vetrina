@@ -1,0 +1,530 @@
+* {
+  box-sizing: border-box;
+}
+
+/*#logo {
+  margin: -64px 0 0px -160px;*/
+  /* play with these to position the image */
+  /*z-index: 100;
+  width: 156px;
+  padding: 5px;
+}*/
+
+#contactText {
+  font-size: 20px;
+  width: 50%;
+  float: right;
+  margin-top: 120px;
+
+}
+
+.formTitle {
+  margin-left: 20px;
+}
+
+#contactForm {
+  width: 40%;
+  float: left;
+  margin-top: 20px;
+  margin-left: -20px;  
+}
+
+.byname {
+  font-family: "Dancing Script", "Roboto", "San Serif";
+  color: #666666;
+  font-size: 45px;
+}
+
+.logo-font {
+  font-family: "Roboto", "San Serif";
+  font-weight: 100;
+}
+
+.user {
+  float: right;
+  position: relative;
+  top: -98px;
+  left: -5px;
+  cursor: pointer;
+  color: #d9d9d9;
+}
+
+.nav-links {
+  /*font-family: 'Russo One', sans-serif;*/
+  cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
+  top: 50px;
+  position: relative;
+  color: #666666;
+  right: 80px;
+  font-size: 20px;
+  }
+
+.nav-links:hover {
+  color: #222222;
+}
+
+#sign-in:hover,
+#sign-out:hover {
+  color: #666666;
+}
+
+.account-container{
+  /*visibility: hidden;*/
+  position: relative;
+  top: 55px;
+  left: 15px;
+}
+
+h1 {
+  margin-top: 0px;
+}
+
+.panel-font {
+  font-family: "Roboto", "San Serif";
+  font-weight: 900;
+  color: #222222;
+}
+
+.panel-font:hover {
+  color: #222222;
+}
+
+.tab-pane-mod {
+  height: 660px;
+  overflow: auto;
+  direction: rtl;
+}
+
+.mod-md-1 {
+  padding-right: 0px;
+  padding-left: 0px;
+  margin-left: -50px;
+}
+
+.mod-md-2 {
+  margin-left: 40px;
+  background-color: white;
+  border: 1px black solid;
+  
+}
+
+.control-label {
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.palette-dropdown {
+  display: inline;
+}
+
+#btn-palette {
+  width: 270px;
+  text-align: left;
+}
+
+.caret {
+    vertical-align: bottom;
+    float: right;
+    margin-top: 9px; 
+  }
+
+.palette:hover {
+  background-color: #e6e6e6;
+  cursor: pointer;
+}
+
+.palette {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 5px;
+  /*margin-left: 10px;*/
+  
+  top: -50px;
+}
+
+#login-hdr {
+  font-family: "Roboto", "San Serif";
+  font-weight: 800;
+}
+
+div#OR {
+  height: 30px;
+  width: 30px;
+  border: 1px solid #C2C2C2;
+  border-radius: 50%;
+  font-weight: bold;
+  line-height: 28px;
+  text-align: center;
+  font-size: 12px;
+  float: left;
+  position: absolute;
+  left: -16px;
+  top: 40%;
+  z-index: 1;
+  background: #DFDFDF;
+}
+
+#reg-error, #login-error {
+  color: darkred;
+  font-weight: 700;
+}
+
+.navbar {
+  border: none;
+  border-top: 23px solid transparent;
+  border-bottom: 1px solid transparent;
+  border-left: 1px solid transparent;
+  border-right: 1px solid transparent;
+  margin-bottom: 0px;
+  min-height: 100px;
+}
+
+.navbar-right {
+  position: relative;
+  top: -36px;
+}
+
+.navbar-inverse .navbar-brand {
+  color: white;
+  font-family: 'Russo One', sans-serif;
+  font-size: 15px;
+}
+
+.navbar>.container .navbar-brand,
+.navbar>.container-fluid .navbar-brand {
+  margin-left: 20px;
+  line-height: 40px;
+}
+
+.navbar-inverse {
+  background-image: none;
+  background-color: #d9d9d9;
+  border-color: #222222;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+  color: #d9d9d9;
+}
+
+.tab-padding {
+  padding: 5px 15px;
+}
+
+#user-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  right: 0;
+  padding-left: 10px;
+  justify-content: flex-end;
+  padding-right: 10px;
+}
+
+#user-container #user-pic {
+  top: -3px;
+  position: relative;
+  /*display: inline-block;*/
+  background-image: url("../images/profile_placeholder.png");
+  background-repeat: no-repeat;
+  width: 40px;
+  height: 40px;
+  background-size: 40px;
+  border-radius: 20px;
+}
+
+#user-container #user-name {
+  font-size: 16px;
+  line-height: 36px;
+  padding-right: 10px;
+  padding-left: 20px;
+  color: #454545;
+}
+
+.spectrumContainer {
+    background: #d9d9d9;
+}
+
+.sp-container {
+  width: 240px;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+  border: solid 1px #222222;
+}
+
+ .sp-palette-container {
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+}
+
+.sp-picker-container {
+    width: 200px;
+    padding-bottom: 0px;
+    margin-bottom: 10px;
+}
+
+.spectrumReplacer {
+  background-color: #222222;
+}
+
+.sp-replacer {
+  border: solid 1px #666666;
+}
+
+.sp-input-container {
+  width: 130px;
+}
+
+.sp-replacer:hover {
+  border: solid 1px #222222;
+  background-color: white;
+  color: #222222;
+}
+
+.sp-dd {
+  color: white;
+}
+
+.sp-replacer:hover .sp-dd {
+  color: #222;
+}
+
+body {
+  margin: 0;
+  background-color: #f2f2f2;
+}
+
+.mod-flex {
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+#room-canvas {
+  border: solid 1px;
+  background-color: white;
+}
+
+.img-thumbnail {
+  margin: 10px;
+}
+
+.sideways>li {
+  height: 0px;
+  width: 100px;
+}
+
+.full-spectrum .sp-palette {
+  max-width: 200px;
+}
+
+.panel-default>.panel-heading {
+  background-image: none;
+  background-color: #d9d9d9;
+  color: white;
+}
+
+.panel-body {
+  background: #222;
+  color: #eee;
+}
+.canvas-btns-container {
+  margin-top: 35px;
+  
+}
+#my-showrooms {
+  background-color: white;
+  border: 1px black solid;
+  padding: 20px;
+  display: block;  
+  margin-right: auto;  
+  margin-left: auto;  
+  margin-top: 40px;
+  margin-bottom: 40px;
+  font-family: "Roboto", "San Serif";
+  font-weight: 900;
+  font-size: 20px;
+
+}
+#my-showrooms > hr {
+
+border-top: 3px solid #eee;
+}
+
+#my-showrooms > h2, h3, h4 {
+font-weight: 900;
+}
+
+.my-showroom {
+  cursor: pointer;
+  display: inline-block;
+  margin: 10px;
+}
+
+/*.tab-pane {
+  overflow: auto;
+}
+*/
+
+.btn-default {
+  background-color: #222222;
+  color: white;
+  text-shadow: none;
+  background-image: none;
+  border-color: #ccc;
+}
+
+.btn-default:focus,
+.btn-default:hover {
+  background-color: white;
+  color: #222222;
+}
+
+.btn-default:disabled {
+  background-color: #C2C2C2;
+  color: #222;
+}
+
+#container {
+  text-align: center;
+}
+
+.paint-container {
+  font-family: "Roboto", "San Serif";
+  font-weight: 900;
+}
+
+.clearfix {
+  clear: both;
+}
+
+*.hidden {
+  display: none;
+}
+
+
+/*@media screen and (max-width: 2500px) {
+  #room-canvas {
+    width: 1200px;
+    height: 800px;
+  }
+}
+@media screen and (max-width: 2000px) {
+  #room-canvas {
+    width: 999px;
+    height: 666px;
+  }
+}
+@media screen and (max-width: 1550px) {
+  #room-canvas {
+    width: 900px;
+    height: 600px;
+  }
+}*/
+
+/* ik code */
+#footer {
+  position:fixed;
+  left:0px;
+  bottom:0px;
+  height:20px;
+
+  width:100%;
+  background:#999;
+}
+
+/* IE 6 */
+/** html #footer {
+  position:absolute;
+  top:expression((0-(footer.offsetHeight)+(document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body.clientHeight)+(ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop))+'px');
+}*/
+
+#footer_push {
+       clear: both;
+       height: 20px;
+     }
+
+.img-circle {
+   border-radius: 50%;
+}
+
+.team-member {
+ text-align:center;
+ border: 3px;
+ color: #909090 ;
+ font-family: "Dancing Script",  "Roboto", "San Serif";
+ font-weight: 900;
+ border-radius:50%;
+ display:inline-block;
+ margin:0 15px;
+}
+
+
+.social-links a{
+ text-align:center;
+ float: left;
+ width: 25px;
+ height: 25px;
+ border: 1px solid #909090 ;
+ background: #000000 ;
+ border-radius: 100%;
+ margin-right: 7px; /*space between*/
+   display: flex;
+   align-items: flex-start;
+   transition: all 0.4s;
+   -webkit-transition: all 0.4s;
+}
+.social-links a i{
+ font-size: 20px;
+   align-self:center;
+ color: #ffffff ;
+   transition: all 0.4s;
+   -webkit-transition: all 0.4s;
+   margin: 0 auto;
+}
+.social-links a i::before{
+ display:inline-block;
+ text-decoration:none;
+}
+.social-links a:hover{
+ background: #909090 ;
+ 
+}
+
+.social-links .social-links-footer{
+ border: 0px;
+ font-size: 10px;
+ border-radius: 50%;
+}
+
+.other-links-footer a{
+ color: #000008 ;
+}
+
+.other-nav-links a{
+ color: #666666 ;
+}
+
+
+/*@media screen and (max-width: 2500px) {
+  #room-canvas {
+    width: 1200px;
+    height: 800px;
+  }
+}
+
+@media screen and (max-width: 2000px) {
+  #room-canvas {
+    width: 999px;
+    height: 666px;
+  }
+}
+
+@media screen and (max-width: 1550px) {
+  #room-canvas {
+    width: 900px;
+    height: 600px;
+  }
+}*/
