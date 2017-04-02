@@ -29,10 +29,21 @@ CREATE TABLE IF NOT EXISTS object_types (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
+CREATE TABLE IF NOT EXISTS object_category (
+  id INT(11) NOT NULL AUTO_INCREMENT,
+  obj_type_id INT(11), 
+  category VARCHAR(255), 
+  PRIMARY KEY (id))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
 CREATE TABLE IF NOT EXISTS objects (
   id INT(11) NOT NULL AUTO_INCREMENT,
   obj_name VARCHAR(255) NOT NULL,
   obj_type_id INT(11) NOT NULL,
+  obj_cat_id INT(11),
+  height INT(11) NOT NULL,
+  width INT(11) NOT NULL,
   static BOOLEAN NOT NULL,
   useradd BOOLEAN NOT NULL,
   user_id int(11), 
@@ -44,6 +55,30 @@ CREATE TABLE IF NOT EXISTS objects (
     REFERENCES object_types (id)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8; 
+
+CREATE TABLE IF NOT EXISTS canvas (
+  id INT(11) NOT NULL AUTO_INCREMENT,
+  canvas_name VARCHAR(255) NOT NULL,
+  canvas_size VARCHAR(255) NOT NULL,
+  real_uom char(1) NOT NULL,
+  real_height INT(11) NOT NULL,
+  real_width INT(11) NOT NULL,
+  pixel_uom INT(11) NOT NULL,
+  pixel_height INT(11) NOT NULL,
+  pixel_width INT(11) NOT NULL,
+  useradd BOOLEAN NOT NULL,
+  user_id INT(11), 
+  PRIMARY KEY (id))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS canvas_objects (
+  id INT(11) NOT NULL AUTO_INCREMENT,
+  canvas_id INT(11) NOT NULL,
+  obj_cat_id INT(11),
+  PRIMARY KEY (id))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
@@ -63,6 +98,7 @@ DEFAULT CHARACTER SET = utf8;
 CREATE TABLE IF NOT EXISTS layers (
   id INT(11) NOT NULL AUTO_INCREMENT,
   layer_index INT(11) NOT NULL,
+  canvas_id INT(11), 
   height INT(11) NOT NULL,
   width INT(11) NOT NULL,
   position_top INT(11) NOT NULL,

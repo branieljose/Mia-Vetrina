@@ -11,6 +11,7 @@ function getPalette(colorTable, format){
 
 	// Requires for getPalette function
 	var ase = require('ase-utils');
+	var cmykRgb = require('cmyk-rgb');
 	var fs = require('fs');
 	var convert = require('color-convert');
 
@@ -34,16 +35,23 @@ function getPalette(colorTable, format){
 	    var colorModel = colorsObj.model;
 	    var colorType  = colorsObj.type;
 
+	    var tempArray  = [];
 	    var colorArray = [];
-	    var colorHex; 
-	    // Parse RGB color array 
-	    colorArray = colorsObj.color; 
+	    var colorHex;
+
+	    // Parse color array 
+	    tempArray = colorsObj.color; 
+	    if (colorModel == 'CMYK')
+	    	colorArray = cmykRgb(tempArray);
+	    if (colorModel == 'RGB')
+	    	colorArray = tempArray; 
+
 	    for (var j=0; j<colorArray.length; j++){
 	        var value = colorArray[j];
 	        // if color is a shade < 1 multiply by 255  
-	        if (value<1){
+	        if (value<=1){
 	            value*=255;
-	            colorArray[j]=Math.floor(value);
+	            colorArray[j]=Math.ceil(value);
 	        }
 	    }
 
@@ -75,7 +83,6 @@ function getPalette(colorTable, format){
 router.get("/", function(req, res) {
 	palette.all(function(data){
 		res.send(data);
-		//res.send('../public/index', {objects: data});
 	});	
 });
 
@@ -88,7 +95,7 @@ router.get("/palette/:id/:format", function(req, res) {
 	});	
 });
 
-router.post("/crt_palette", function(req, res){
+router.post("/create_palette", function(req, res){
 	var cols = ['palette_name','file_name','file_path'];
 	var vals = [req.body.palette_name,req.body.file_name,req.body.file_path];
 

@@ -65,9 +65,11 @@ router.get("/textures", function(req, res) {
 });
 
 router.post("/create_object", function(req, res){
-	var cols = ['obj_name','obj_type_id','static','useradd',
+	var cols = ['obj_name','obj_type_id','obj_cat_id',
+				'height','width','static','useradd',
 				'user_id','file_path','file_name'];
-	var vals = [req.body.obj_name, req.body.obj_type_id,req.body.static,
+	var vals = [req.body.obj_name, req.body.obj_type_id,req.body.obj_cat_id,
+				req.body.height,req.body.width,req.body.static,
 				req.body.useradd,req.body.user_id,
 				req.body.file_path,req.body.file_name];
 

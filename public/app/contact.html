@@ -3,64 +3,62 @@
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MIΛ VETRINΛ</title>
+  <title>Contact - MIΛ VETRINΛ</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <!-- Optional theme -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
   <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.vertical-tabs.min.css">
   <link rel="stylesheet" type="text/css" href="assets/css/spectrum.css">
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-  <link href="https://fonts.googleapis.com/css?family=Roboto:100" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Dancing+Script:700|Open+Sans|Raleway" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100|Russo+One|Dancing+Script:700|Open+Sans|Raleway" rel="stylesheet">
 
   <!--<link rel="stylesheet" href="assets/css/jquery.ui.rotatable.css">-->
 </head>
 
 <body>
 
-  <nav class="navbar navbar-inverse">
+  <nav class="navbar navbar-lg navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="index.html"><span class="byname"> impulso</span></a>
+      <div class="row" id="login-row">
+        <div class="col-md-12 text-right">
+          <div class="hidden user" id="sign-out"><span class="glyphicon glyphicon-log-out"></span> Sign Out</div>
+          <div class="user" id="sign-in"><span class="glyphicon glyphicon-user"></span> Login/Register</div>
+        </div>
       </div>
-      <ul class="nav navbar-nav navbar-right">
-        <li>
-          <!-- <div id="how-to" class="nav-links"> How to</div> -->
-          <div id='how-To' class="nav-links other-nav-links">How to <span class="glyphicon glyphicon-question-sign"></span>
-          </div>
-        </li>
-        <li>
-           <div id="about" class="nav-links other-nav-links"><a href="about.html">About</div></a>
-        </li>
-        <li>
-          <div id="team" class="nav-links other-nav-links"><a href="team.html">Team</div></a>
-        </li>
-        <li>
-          <div id="contact" class="nav-links other-nav-links"><a href="contact.html">Contact</div></a>
-        </li>
-      </ul>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-6">
+          <ul class="nav navbar-nav navbar-right">
+            <!--<li>
+              <div id='how-To' class="nav-links">How to <span class="glyphicon glyphicon-question-sign"></span></div>
+            </li>-->
+            <li>
+              <div id="about" class="nav-links"> About</div>
+            </li>
+            <!--<li>
+              <div id="team" class="nav-links"> Team</div>
+            </li>-->
+            <li>
+              <div id="contact" class="nav-links"> Contact</div>
+            </li>
+            <li>
+              <div class="account-container">
+                <div id="user-container">
+                  <div id="user-pic"></div>
+                  <div id="user-name"></div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-left">
+          <div class="navbar-brand byname-lg fade-in" id="home"><span class="byname"> Dream... Create... Design... your inspirations with <span class="logo-font">MIΛ VETRINΛ</span> by impulso</span></div>
+        </div>
+      </div>
     </div>
   </nav>
 
-  <div class="hidden user" id="sign-out"><span class="glyphicon glyphicon-log-out"></span> Sign Out</div>
-  <div class="user" id="sign-in"><span class="glyphicon glyphicon-user"></span> Login/Register</div>
-
-  <div class="account-container">
-    <div id="user-container">
-      <div class="hidden" id="user-pic"></div>
-      <div id="user-name"></div>
-    </div>
-  </div>
     <br>
-
-  <div class="container-flex mod-flex">
-
-    <h1 class="logo-font">MIΛ VETRINΛ</h1>
-  </div>
-
 
     <!-- Contact Section -->
     <section id="contact">
@@ -71,7 +69,7 @@
                 </p>
             </div>  <!-- contactHeader end  -->
             <form name="sentMessage" id="contactForm" novalidate>
-                  <h2 class = "section-heading formTitle">Contact Us</h2>
+                  <h1 class = "section-heading formTitle">Contact&nbsp;&nbsp;<span class="impulso-style">impulso</span></h1>
                   <div class="col-md-12">
                       <div class="form-group">
                           <input type="text" class="form-control" placeholder="Your Name *" id="name" required data-validation-required-message="Please enter your name.">
@@ -99,21 +97,6 @@
           </form>      
         </div>  <!-- container end  -->
     </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     <!-- Message Modal -->
     <div id="msgModal" class="modal fade" role="dialog">
@@ -165,7 +148,7 @@
 
                       <div class="tab-pane active" id="login">
                         <br>
-                        <form role="form" class="form-horizontal login-form">
+                        <form role="form" class="form-horizontal login-form" data-toggle="validator">
                           <div class="row">
                             <div class="form-group">
                               <label for="login-user-name" class="col-md-3 control-label">User Name *</label>
@@ -201,7 +184,7 @@
 
                       <div class="tab-pane" id="registration">
                         <br>
-                        <form role="form" class="form-horizontal registration-form">
+                        <form role="form" class="form-horizontal registration-form" data-toggle="validator">
                           <div class="form-group">
                             <label for="reg-user-name" class="col-md-3 control-label">User Name *</label>
                             <div class="col-md-9">
@@ -292,186 +275,37 @@
       </div>
       <!-- END Modal Login Large  -->
 
-
-      <!-- Register/Sign-in Modal -->
-
-      <!--<div id="login-modal" class="modal fade" role="dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h2 class="modal-title" id="myModalLabel">Login or Register for MIΛ VETRINΛ</h2>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="well">
-              <form id="loginForm" method="POST">
-                <div class="form-group">
-                  <label for="username" class="control-label">Username</label>
-                  <input type="text" class="form-control" name="username" value="" required="" title="Please enter your username" placeholder="username">
-                  <span class="help-block"></span>
-                </div>
-                <div class="form-group">
-                  <label for="password" class="control-label">Password</label>
-                  <input type="password" class="form-control" name="password" placeholder="password" value="" required="" title="Please enter your password">
-                  <span class="help-block"></span>
-                </div>
-                <div id="loginErrorMsg" class="alert alert-error hide">Wrong username or password</div>
-                <div class="checkbox">
-                  <label>
-                                      <input type="checkbox" name="remember" id="remember"> Remember login
-                                  </label>
-                  <p class="help-block">(if this is a private computer)</p>
-                </div>
-                <button type="submit" value="login" name="submit" class="btn btn-success btn-block">Login</button>
-              </form>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <p class="lead">Register now for <span class="text-success">FREE</span></p>
-            <ul class="list-unstyled" style="line-height: 2">
-              <li><span class="fa fa-check text-success"></span> Design &amp; Save your Showrooms to your Account</li>
-              <li><span class="fa fa-check text-success"></span> View and Edit your Showrooms on any computer</li>
-              <li><span class="fa fa-check text-success"></span> Save your Showrooms as an image file to your computer</li>
-              <li><span class="fa fa-check text-success"></span> Add your own design elements (Rooms, Art, Furniture)</li>
-            </ul>
-            <p><button type="button" class="btn btn-info btn-block">Yes please, register now!</button></p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>-->
-
-    <!-- how-To Modal -->
-    <div class="modal fade" id="how-To-Modal" tabindex="-1" role="dialog" aria-labelledby="how-To-Modal" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title" id="how-To-Modal">How to...create a MIΛ VETRINΛ Inspiration Showroom Design</h4>
-                </div>
-                <div class="modal-body">
-                    <h4>What are...</h4>
-                    <ul><strong>Wall Colors:</strong>
-                        <li>Color is used to personalize Decor or Floor space.</li>
-                    </ul>
-                    <ul><strong>Rooms:</strong>
-                        <li>Are ready made MIΛ VETRINΛ inspiration Showroom designs.</li> 
-                        <li>Customize your inspiration Room by accessorizing with Furniture and/or Artwork.</li>
-                        <p>NOTE: You cannot add wall color to a ready made Room.</p>
-                    </ul>
-                    <ul><strong>Decors and Floors</strong>
-                        <li>These spaces allow you to personalize your inspiration.</li>
-                        <li>Decors are spaces with some furnishings.</li>
-                        <li>Floors are spaces with no furnishings.</li>
-                    </ul>
-                    <ul><strong>Artwork and Furniture</strong> 
-                        <li>Use to accessorize your inspiration Room, Decor or Floor space.</li>
-                        <li>To move, select and drag</li> 
-                        <li>To resize, hover to a corner and pull one of the square handles.</li>
-                        <li>To remove, double click on the Artwork or Furniture then confirm delete.</li>
-                    </ul>
-                    <ul>
-                        <strong>Textures</strong> 
-                        <li>Use to add Texture to your Wall Color. This provides depth to your wall.</li>
-                        <li>Adding texture will not affect your design.</li>
-                    </ul>
-                    <h4>How to use Rooms...</h4>
-                    <ul><strong>Select your Room from the Rooms tab, then Accessorize...</strong>
-                        <li>Add Furniture</li>
-                        <li>Add Artwork</li>
-                        <p>NOTE: You cannot add Wall Color.</p>
-                    </ul>
-                    <h4>How to use Floors...</h4>
-                    <ul><strong>Select Floor space from the Floors tab, then Customize...</strong>
-                        <li>Add Wall Color</li>
-                        <li>Add Artwork</li>
-                        <li>Add Furniture</li>
-                        <li>Add Texture</li>
-                        <p>NOTE: If you add a Decor space you will automatically replace your Floor space.  App will keep your Wall Color, Artwork, Furniture and wall Texture. </p>
-                    </ul>
-                    <h4>How to use Decors...</h4>
-                    <ul><strong>Select Decor from the Decors tab, then Customize...</strong>
-                        <li>Add Wall Color</li> 
-                        <li>Add Artwork</li>
-                        <li>Add Furniture</li>
-                        <li>Add Textures</li>
-                        <p>NOTE: If you add a Floor space you will automatically replace your Decor space. App will keep your Wall Color, Artwork, Furniture and wall Texture.</p>
-                    </ul>
-                    <h4>How to use Artwork...</h4>
-                    <ul><strong>Select Artwork from the Artwork tab, then use to Accessorize you inspiration...</strong>
-                        <li>Add to Rooms, Decors and Floor spaces</li>
-                        <li>To Move select and drag, Resize by hovering to a corner and pulling one of the square handles, Remove by double clicking on the Artwork and confirming delete.</li>                        
-                    </ul>
-                    <h4>How to use Furniture...</h4> 
-                    <ul><strong>Select from Furnitue from the Furniture tab, then use to Accessorize your inspiration...</strong>            
-                        <li>Add to Rooms, Decors and Floor spaces</li>
-                        <li>To Move select and drag, Resize by hovering to a corner and pulling one of the square handles, Remove by double clicking on the Furniture and confirming delete.</li>
-                    </ul>                        
-                    <h4>How to use Textures...</h4> 
-                    <ul><strong>Select Texture from the Textures tab, then use to add texture to your wall.</strong>
-                        <li>Adding texture will not affect your design.</li>
-                    </ul>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>  
-        </div>
-    </div> 
-    <!-- end how-To Modal -->
-
-
 <!-- Footer -->
-<div id="footer_push"></div>
-  <div id="footer">
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-5">
-                    <span class="copyright">&copy; 2017 MIΛ VETRINA  All rights reserved.</span>
-                </div>
-                <div class="col-md-3">
-                    <ul  class="list-inline social-links social-links-footer">
-                        <li><a href="#"><i class="fa fa-twitter"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-facebook"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <ul class="list-inline text-muted other-links-footer">
-                        <li><a href="#">Privacy Policy</a>
-                        </li>
-                        <li><a href="#">Terms of Use</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-flex-container text-center">
+        <div class="footer-flex-items">
+          <div class="text-muted copyright footer-flex-item">
+            &copy; Copyright 2017 MIΛ VETRINA All rights reserved.
+          </div>
+          <div class="footer-connect footer-flex-item">
+          </div>
         </div>
-    </footer>
-  </div>
+      </div>
+  </footer>
+
 <!-- end footer  -->
 
 
-      <script src="https://code.jquery.com/jquery.js"></script>
-      <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
-      <!--<script src="http://0.0.0.0:5001/socket.io/socket.io.js"></script>-->
-      <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-      <!--<script src="assets/js/jquery.ui.rotatable.js"></script>-->
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-      <script src="assets/js/jcanvas.min.js"></script>
-      <script src="assets/js/jcanvas-handles.min.js"></script>
-      <script src="assets/js/validator.js"></script>
-      <script src="assets/js/app.js"></script>
-      <script src="assets/js/spectrum.js"></script>
-      <!--<script src="assets/js/delivery.js"></script>
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
+  <!--<script src="http://0.0.0.0:5001/socket.io/socket.io.js"></script>-->
+  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+  <!--<script src="assets/js/jquery.ui.rotatable.js"></script>-->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="assets/js/jcanvas.min.js"></script>
+  <script src="assets/js/jcanvas-handles.min.js"></script>
+  <script src="assets/js/footer.js"></script>
+  <script src="assets/js/header.js"></script>
+  <script src="assets/js/validator.js"></script>
+  <script src="assets/js/contact.js"></script>
+  <script src="assets/js/spectrum.js"></script>
+  <!--<script src="assets/js/delivery.js"></script>
     <script src="assets/js/socket.js"></script>-->
 
 </body>

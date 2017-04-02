@@ -1,0 +1,57 @@
+Mia Vetrina Monetizations
+
+1)	My Showcase			User Product
+		Target:			Creatives (artists, photographers, designers)
+		Purpose:		To showcase creative's artwork.  Emphasis is on designing a room to 
+						hold art work.  The room could be pre-furnished with a blank wall, or 
+						the creative can "design" a room with basic color, furniture, lamps, etc. 
+		
+		Features:		Color palette, basic furniture (sofas, chairs, lamps, tables, plants), 
+						Decors (rooms with blank transparent walls), Textures & Artwork
+						User can add artwork, objects (furniture, rooms, plants, decors)
+					
+2)	Room Designer		Company Product
+		Target:			Furniture giants (Ikea, Raymour & Flanigan, Ethan Allen, etc.)
+		Purpose:		A user enacted "room designer" that features the furniture giant's products
+						including: Catalog #, Item Name, Price, Dimensions, etc. The user would be
+						encouraged to design a room with the company's furniture.  Rooms would be 
+						preset (i.e. Living Room, Dining Room, Bedroom, etc.).  Only the specific 
+						furniture from the company would be available.  Users could only select 
+						from the available options. Once the room is designed, the user would be
+						encouraged to order items via a shopping cart - costs would be shown.  
+					
+		Features: 		Color palette, distinct company furniture & accessories, company showrooms
+						& textures, shopping cart & trends analysis
+					
+3)	Gallery Designer	Company Product
+		Target:			Online Art galleries 
+		Purpose: 		To showcase gallery artwork on preset rooms/walls (decors), with color 
+						selection.  User enacted "design" with a preset gallery (i.e. a wall with 
+						a sofa, bed or chair), color enabled.  User would be able to see how the
+						selected artwork would look with certain colors, and basic settings 
+						(living room, bedroom, media room, gallery, etc.). Like 2) above, the user
+						would be encouraged to purchase the artwork via shopping cart. 
+						
+		Features:		Color palette, distint gallery artwork, preset showrooms & shopping cart & 
+						trends analysis
+						
+4)	Kitchen Designer	Vendor Product
+		Target:			Hardware vendors (kitchens) specializing in tiles, cabinetry, etc. 
+		Purpose: 		To showcase products in a user enacted "kitchen designer" with plug-in
+						counters, cabinetry, backsplashes, kitchen faucets, etc.) Only company
+						products would be selected and placed in the "kitchen" mockup.
+						
+		Features:		Color palette, distinct company products & accessories, shopping cart & 
+						trends analysis
+						
+5)	Home Stager			User/Interior Designer Product
+		Target:			Home Contractors, Designers, Builders
+		Purpose:		To enable room design from scratch.  Similar to 1) above, but targeted
+						towards contractors and designers for home staging, building, improvements.
+						Could be used for designing quotes.  
+						
+		Features:		Color palette, preset rooms with furniture & accessories, floors, 
+						textures and artwork.  		
+						
+								
+															

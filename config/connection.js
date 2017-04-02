@@ -1,17 +1,17 @@
 // Set up MySQL connection.
 var mysql = require("mysql");
 
-var connection;
+var PORT = process.env.PORT || 3306;
 
 if(process.env.JAWSDB_URL){
   connection = mysql.createConnection(process.env.JAWSDB_URL);
 } else {
-  connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "root",
-  port: 3306,
-  database: "impulso_db"
+  	var connection = mysql.createConnection({
+  		host: "localhost",
+  		user: "root",
+  		password: "",
+  		port: PORT,
+  		database: "impulso_db"
   });
 };
 // Make connection.

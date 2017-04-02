@@ -1,14 +1,11 @@
 $(document).ready(function () {
 
-  $('.login-form').validator();
-  $('.registration-form').validator();
-
-  var canvas;
-  var c;
-  var appLoggedIn = false;
-
+  var $canvas;
   var $canvasWidth;
   var $canvasHeight;
+  var vCanvas;
+  var appLoggedIn = false;
+
 
 
   var delLayer;
@@ -17,8 +14,16 @@ $(document).ready(function () {
   var patt_type;
   var palArray = [];
   var palObj = [];
-  var currentShowroomName;
-  var currentShowroomId = 0;
+  var currentShowroom = {
+    id: 0,
+    showroom_height: 0,
+    showroom_width: 0,
+    showroom_name: "",
+    canvas_id: 0,
+    file_path: "",
+    file_name: "",
+    user_id: 0
+  };
 
   var textureExists = false;
   var colorExists = false;
@@ -29,31 +34,43 @@ $(document).ready(function () {
 
   function setCanvas() {
     if ($(window).width() > 1900 && $(window).width() <= 2500) {
-      $canvasWidth = 1200;
-      $canvasHeight = 800;
+      $canvasWidth = 1152;
+      $canvasHeight = 768;
     } else {
       if ($(window).width() > 1550 && $(window).width() <= 1900) {
-        $canvasWidth = 999;
-        $canvasHeight = 666;
+        $canvasWidth = 1008;
+        $canvasHeight = 672;
       } else {
         if ($(window).width() <= 1550) {
-          $canvasWidth = 900;
-          $canvasHeight = 600;
+          $canvasWidth = 864;
+          $canvasHeight = 576;
         } else { //browser window is bigger than 2500
-          $canvasWidth = 1800;
-          $canvasHeight = 1200;
+          $canvasWidth = 1728;
+          $canvasHeight = 1152;
         }
       }
     }
 
-    var $canvas = $("<canvas>").attr("id", "room-canvas").attr("width", $canvasWidth).attr("height", $canvasHeight);
+    var newCanvas = $("<canvas>").attr("id", "room-canvas").attr("width", $canvasWidth).attr("height", $canvasHeight);
 
-    $("#canvas").append($canvas);
-    canvas = $("#room-canvas");
-    c = document.getElementById('room-canvas');
+    $("#canvas").append(newCanvas);
+    $canvas = $("#room-canvas");
+    vCanvas = document.getElementById('room-canvas');
 
     $("#my-showrooms").css('width', $canvasWidth);
     $(".tab-pane-mod").css('height', $canvasHeight);
+
+  };
+
+  function clearCanvas() {
+
+    $canvas.removeLayers().drawLayers();
+    floorMode = false;
+    decorMode = false;
+    roomMode = false;
+    textureExists = false;
+    colorExists = false;
+    artworkCount = 0;
 
   };
 
@@ -73,7 +90,11 @@ $(document).ready(function () {
 
       for (var i = 0; i < data.length; i++) {
         var $divShowroom = $("<div>").addClass("my-showroom").attr("data-user-id", data[i].user_id)
-          .attr("data-id", data[i].id).text(data[i].showroom_name);
+          .attr("data-id", data[i].id).attr("data-canvas-id", data[i].canvas_id)
+          .attr("data-height", data[i].showroom_height).attr("data-width", data[i].showroom_width)
+          .text(data[i].showroom_name);
+
+          //*******load and display showroom using data[i].file_path and data[i].file_name
 
         $("#my-showrooms").append($divShowroom);
       }
@@ -86,17 +107,17 @@ $(document).ready(function () {
       url: "/showrooms/showroom/" + showroomId,
       method: "GET"
     }).done(function (data) {
-      canvas.removeLayers();
-      floorMode = false;
-      decorMode = false;
-      roomMode = false;
-      textureExists = false;
-      colorExists = false;
-      artworkCount = 0;
+      
+      clearCanvas();
 
-      console.log(data);
-      currentShowroomName = data[0].showroom_name;
-      currentShowroomId = data[0].showroom_id;
+      currentShowroom.id = data[0].showroom_id;
+      currentShowroom.showroom_height = data[0].showroom_height;
+      currentShowroom.showroom_width = data[0].showroom_width;
+      currentShowroom.showroom_name = data[0].showroom_name;
+      currentShowroom.canvas_id = data[0].canvas_id;
+      currentShowroom.file_path = data[0].file_path;
+      currentShowroom.file_name = data[0].file_name;
+      currentShowroom.user_id = data[0].user_id;
 
 
       for (var i = 0; i < data.length; i++) {
@@ -126,23 +147,6 @@ $(document).ready(function () {
   function addTexture(data) {
 
     $('img[data-obj-id="' + data.object_id + '"]').trigger("click");
-    //   textureExists = true;
-
-    //   console.log("addTexture: " + data);
-
-    //   $.ajax({
-    //     url: "/objects/object/" + data.object_id,
-    //     method: "GET"
-    //   }).done(function (obj_data) {
-    //     patt_type = data.layer_type;
-    //     patt_obj_id = data.object_id;
-
-    //     patt = canvas.createPattern({
-    //       source: obj_data.file_path + obj_data.file_name,
-    //       repeat: "repeat",
-    //       load: draw
-    //     });
-    //   });
   }
 
   function addColor(data) {
@@ -152,10 +156,10 @@ $(document).ready(function () {
     // var colorName = palObj[(palArray.indexOf(data.color.toUpperCase()))].name;
     $("#color-name").html("");
 
-    canvas.removeLayer("color");
+    $canvas.removeLayer("color");
 
     if (textureExists) {
-      canvas.setLayer("texture", {
+      $canvas.setLayer("texture", {
         opacity: 1
       });
       colorIndex = 1;
@@ -166,7 +170,7 @@ $(document).ready(function () {
     }
 
 
-    canvas.addLayer({
+    $canvas.addLayer({
       name: "color",
       type: "rectangle",
       fillStyle: data.color,
@@ -179,8 +183,8 @@ $(document).ready(function () {
       index: colorIndex,
       x: 0,
       y: 0,
-      width: c.width,
-      height: c.height
+      width: vCanvas.width,
+      height: vCanvas.height
     }).drawLayers();
 
     colorExists = true;
@@ -188,128 +192,13 @@ $(document).ready(function () {
 
   function addBaseImg(data) {
 
-    $('img[data-obj-id="' + data.object_id + '"]').trigger("click", [data.height, data.width, data.position_top, data.position_left]);
-
-    // if (floorMode) canvas.removeLayer("floor");
-    // if (roomMode) canvas.removeLayer("room");
-    // if (decorMode) canvas.removeLayer("decor");
-
-    // floorMode = false;
-    // decorMode = false;
-    // roomMode = false;
-
-    // var objIndex;
-
-    // if (data.layer_type === "room") {
-    //   if (colorExists) canvas.removeLayer("color");
-    //   if (textureExists) canvas.removeLayer("texture");
-    //   colorExists = false;
-    //   textureExists = false;
-    //   objIndex = 0;
-    //   $("#full").spectrum("disable");
-    // } else {
-    //   $("#full").spectrum("enable");
-    //   if (colorExists && textureExists) objIndex = 2 + artworkCount;
-    //   if ((colorExists && !(textureExists)) || (!(colorExists) && textureExists)) objIndex = 1 + artworkCount;
-    //   if (!(colorExists) && !(textureExists)) objIndex = 0 + artworkCount;
-    // }
-
-    // switch (data.layer_type) {
-    //   case "floor":
-    //     floorMode = true;
-    //     break;
-    //   case "decor":
-    //     decorMode = true;
-    //     break;
-    //   case "room":
-    //     roomMode = true;
-    //     break;
-    // }
-
-    // $.ajax({
-    //   url: "/objects/object/" + data.object_id,
-    //   method: "GET"
-    // }).done(function (obj_data) {
-    //   canvas.addLayer({
-    //     type: "image",
-    //     name: obj_data.obj_name,
-    //     source: obj_data.file_path + obj_data.file_name,
-    //     draggable: false,
-    //     data: {
-    //       type: data.layer_type,
-    //       objid: data.object_id
-    //     },
-    //     opacity: 1,
-    //     fromCenter: false,
-    //     intangible: true,
-    //     index: objIndex,
-    //     x: data.position_left,
-    //     y: data.position_top,
-    //     width: data.width,
-    //     height: data.height
-    //   }).drawLayers();
-
-    // });
+    $('img[data-obj-id="' + data.object_id + '"]').trigger("click");
 
   }
 
   function addOtherObjects(data) {
     $('img[data-obj-id="' + data.object_id + '"]').trigger("click", [data.height, data.width, data.position_top, data.position_left]);
 
-    // var objIndex;
-
-    // $.ajax({
-    //   url: "/objects/object/" + data.object_id,
-    //   method: "GET"
-    // }).done(function (obj_data) {
-    //   var layerName = obj_data.obj_name + "_" + 0;
-    //   canvas.addLayer({
-    //     type: "image",
-    //     name: layerName,
-    //     source: obj_data.file_path + obj_data.file_name,
-    //     draggable: true,
-    //     data: {
-    //       type: data.layer_type,
-    //       objid: data.object_id
-    //     },
-    //     fromCenter: false,
-    //     x: data.position_left,
-    //     y: data.position_top,
-    //     width: data.width,
-    //     height: data.height,
-    //     resizeFromCenter: false,
-    //     constrainProportions: true,
-    //     opacity: 1,
-    //     shadowColor: '#222',
-    //     shadowBlur: 10,
-    //     handlePlacement: "corners",
-    //     dblclick: function (layer) {
-    //       delLayer = layer;
-    //       $("#deleteModal").modal({
-    //         backdrop: "static",
-    //         keyboard: true
-    //       });
-    //     },
-    //     mouseover: function (layer) {
-    //       showHandles(layer).drawLayers();
-    //     },
-    //     mouseout: function (layer) {
-    //       hideHandles(layer).drawLayers();
-    //     }
-    //   }).drawLayers();
-
-    //   if (data.layer_type === "art") {
-    //     artworkCount++;
-    //     if (roomMode) objIndex = 1;
-    //     else {
-    //       if (colorExists && textureExists) objIndex = 2;
-    //       if ((colorExists && !(textureExists)) || (!(colorExists) && textureExists)) objIndex = 1;
-    //       if (!(colorExists) && !(textureExists)) objIndex = 0;
-    //     }
-    //     canvas.moveLayer(layerName, objIndex).drawLayers();
-    //   }
-
-    // });
   }
 
   function checkUser() {
@@ -362,15 +251,11 @@ $(document).ready(function () {
       // Hide sign-in button.
       $("#sign-in").removeClass("hidden");
       $(".showrooms-container").addClass("hidden");
-
-
     }
-
-
   };
 
   function showHandles(layer) {
-    return canvas.setLayer(layer, {
+    return $canvas.setLayer(layer, {
       handle: {
         type: "rectangle",
         visible: true,
@@ -383,7 +268,7 @@ $(document).ready(function () {
   };
 
   function hideHandles(layer) {
-    return canvas.setLayer(layer, {
+    return $canvas.setLayer(layer, {
       handle: {
         type: "rectangle",
         visible: false,
@@ -402,9 +287,9 @@ $(document).ready(function () {
     else objOpacity = 0;
 
     textureExists = true;
-    canvas.removeLayer("texture");
+    $canvas.removeLayer("texture");
 
-    canvas.addLayer({
+    $canvas.addLayer({
       name: "texture",
       type: "rectangle",
       fillStyle: patt,
@@ -417,64 +302,159 @@ $(document).ready(function () {
       fromCenter: false,
       x: 0,
       y: 0,
-      width: c.width,
-      height: c.height
+      width: vCanvas.width,
+      height: vCanvas.height
     });
 
-    canvas.setLayer("color", {
+    $canvas.setLayer("color", {
       opacity: .9
     });
 
-    canvas.moveLayer("texture", 0).drawLayers();
+    $canvas.moveLayer("texture", 0).drawLayers();
 
   };
+
+  function loadRooms() {
+    $.ajax({
+      url: "/objects/rooms",
+      method: "GET"
+    }).done(function (data) {
+      for (var i = 0; i < data.length; i++) {
+        var $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-base").attr("data-src", data[i].file_path + data[i].file_name).attr("data-drag", false)
+          .attr("data-width", vCanvas.width).attr("data-height", vCanvas.height).attr("data-x", 0).attr("data-y", 0).attr("data-name", "room").attr("data-type", "room")
+          .attr("src", data[i].file_path + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name).attr("data-obj-id", data[i].id);
+
+        $("#rooms").append($imgThumbnail);
+
+      }
+    });
+
+  };
+  function loadFloors() {
+    $.ajax({
+      url: "/objects/floors",
+      method: "GET"
+    }).done(function (data) {
+      for (var i = 0; i < data.length; i++) {
+        var $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-base").attr("data-src", data[i].file_path + data[i].file_name).attr("data-drag", false)
+          .attr("data-width", vCanvas.width).attr("data-height", vCanvas.height).attr("data-x", 0).attr("data-y", 0).attr("data-name", "floor").attr("data-type", "floor")
+          .attr("src", data[i].file_path + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name).attr("data-obj-id", data[i].id);
+
+        $("#floors").append($imgThumbnail);
+
+      }
+    });
+
+  };
+
+  function loadPaletteDropdown() {
+    $.ajax({
+      url: "/palettes",
+      method: "GET"
+    }).done(function (data) {
+      for (var i = 0; i < data.length; i++) {
+        var $liPalette = $("<li>").addClass("palette").attr("data-id", data[i].id).text(data[i].palette_name);
+
+        $(".palette-well").append($liPalette);
+
+      }
+    });
+
+  };
+
+  function loadDecors() {
+    $.ajax({
+      url: "/objects/decors",
+      method: "GET"
+    }).done(function (data) {
+      for (var i = 0; i < data.length; i++) {
+        var $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-base").attr("data-src", data[i].file_path + data[i].file_name).attr("data-drag", false)
+          .attr("data-width", vCanvas.width).attr("data-height", vCanvas.height).attr("data-x", 0).attr("data-y", 0).attr("data-name", "decor").attr("data-type", "decor")
+          .attr("src", data[i].file_path + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name).attr("data-obj-id", data[i].id);
+
+        $("#decors").append($imgThumbnail);
+
+      }
+    });
+  }
+
+  function loadTextures() {
+    var removeTexture = $("<button>").text("No Texture").addClass("btn btn-default no-texture").attr("type", "button");
+
+    $("#textures").append($("<br>")).append(removeTexture).append($("<br>"));
+
+    $.ajax({
+
+      url: "/objects/textures",
+      method: "GET"
+    }).done(function (data) {
+      for (var i = 0; i < data.length; i++) {
+        var $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-patt").attr("data-src", data[i].file_path + data[i].file_name).attr("data-drag", false)
+          .attr("data-width", vCanvas.width).attr("data-height", vCanvas.height).attr("data-x", 0).attr("data-y", 0).attr("data-name", "texture").attr("data-type", "texture")
+          .attr("src", data[i].file_path + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name).attr("data-obj-id", data[i].id);
+
+        $("#textures").append($imgThumbnail);
+
+      }
+    });
+  }
+
+  function loadArtwork() {
+    $.ajax({
+      url: "/objects/artwork",
+      method: "GET"
+    }).done(function (data) {
+      for (var i = 0; i < data.length; i++) {
+        var $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-art").attr("data-src", data[i].file_path + data[i].file_name).attr("data-drag", true).attr("data-height", data[i].height)
+          .attr("data-width", data[i].width).attr("data-x", 100).attr("data-y", 20).attr("data-name", data[i].obj_name).attr("data-copy", 1)
+          .attr("data-type", "art").attr("src", data[i].file_path + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name).attr("data-obj-id", data[i].id);
+
+        $("#artwork").append($imgThumbnail);
+
+      }
+    });
+  }
+
+  function loadFurniture() {
+    $.ajax({
+      url: "/objects/furniture",
+      method: "GET"
+    }).done(function (data) {
+      for (var i = 0; i < data.length; i++) {
+        var $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-furn").attr("data-src", data[i].file_path + data[i].file_name).attr("data-drag", true).attr("data-height", data[i].height)
+          .attr("data-width", data[i].width).attr("data-x", 100).attr("data-y", 100).attr("data-name", data[i].obj_name).attr("data-copy", 1)
+          .attr("data-type", "furn").attr("src", data[i].file_path + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name).attr("data-obj-id", data[i].id);
+
+        $("#furniture").append($imgThumbnail);
+
+      }
+    });
+  }
+
+  //*********************app starts executing here***********************
 
   setCanvas();
 
   checkUser();
 
-  //load Rooms
-  $.ajax({
-    url: "/objects/rooms",
-    method: "GET"
-  }).done(function (data) {
-    for (var i = 0; i < data.length; i++) {
-      var $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-base").attr("data-src", data[i].file_path + data[i].file_name).attr("data-drag", false)
-        .attr("data-width", c.width).attr("data-height", c.height).attr("data-x", 0).attr("data-y", 0).attr("data-name", "room").attr("data-type", "room")
-        .attr("src", data[i].file_path + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name).attr("data-obj-id", data[i].id);
+  loadPaletteDropdown();
 
-      $("#rooms").append($imgThumbnail);
+  loadRooms();
 
-    }
-  });
+  loadFloors();
 
-  //load Floors
-  $.ajax({
-    url: "/objects/floors",
-    method: "GET"
-  }).done(function (data) {
-    for (var i = 0; i < data.length; i++) {
-      var $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-base").attr("data-src", data[i].file_path + data[i].file_name).attr("data-drag", false)
-        .attr("data-width", c.width).attr("data-height", c.height).attr("data-x", 0).attr("data-y", 0).attr("data-name", "floor").attr("data-type", "floor")
-        .attr("src", data[i].file_path + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name).attr("data-obj-id", data[i].id);
+  loadDecors();
 
-      $("#floors").append($imgThumbnail);
+  loadTextures();
 
-    }
-  });
+  loadArtwork();
 
-  //load palette dropdown
-  $.ajax({
-    url: "/palettes",
-    method: "GET"
-  }).done(function (data) {
-    for (var i = 0; i < data.length; i++) {
-      var $liPalette = $("<li>").addClass("palette").attr("data-id", data[i].id).text(data[i].palette_name);
+  loadFurniture();
 
-      $(".palette-well").append($liPalette);
+// $canvas.detectPixelRatio();
+  // $canvas.restoreCanvas();
 
-    }
-  });
+  //*********************Event Listeners**********************************
 
   $(document).on("click", ".palette", function () {
     var palName = $(this).text();
@@ -525,10 +505,10 @@ $(document).ready(function () {
           var colorName = palObj[(palArray.indexOf(color.toHexString().toUpperCase()))].name;
           $("#color-name").html(colorName);
 
-          canvas.removeLayer("color");
+          $canvas.removeLayer("color");
 
           if (textureExists) {
-            canvas.setLayer("texture", {
+            $canvas.setLayer("texture", {
               opacity: 1
             });
             colorIndex = 1;
@@ -539,7 +519,7 @@ $(document).ready(function () {
           }
 
 
-          canvas.addLayer({
+          $canvas.addLayer({
             name: "color",
             type: "rectangle",
             fillStyle: color.toHexString(),
@@ -552,8 +532,8 @@ $(document).ready(function () {
             index: colorIndex,
             x: 0,
             y: 0,
-            width: c.width,
-            height: c.height
+            width: vCanvas.width,
+            height: vCanvas.height
           }).drawLayers();
 
           colorExists = true;
@@ -563,75 +543,6 @@ $(document).ready(function () {
     });
 
   });
-
-  //load Decors
-  $.ajax({
-    url: "/objects/decors",
-    method: "GET"
-  }).done(function (data) {
-    for (var i = 0; i < data.length; i++) {
-      var $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-base").attr("data-src", data[i].file_path + data[i].file_name).attr("data-drag", false)
-        .attr("data-width", c.width).attr("data-height", c.height).attr("data-x", 0).attr("data-y", 0).attr("data-name", "decor").attr("data-type", "decor")
-        .attr("src", data[i].file_path + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name).attr("data-obj-id", data[i].id);
-
-      $("#decors").append($imgThumbnail);
-
-    }
-  });
-
-  //load Textures
-
-  var removeTexture = $("<button>").text("No Texture").addClass("btn btn-default no-texture").attr("type", "button");
-
-  $("#textures").append(removeTexture);
-
-  $.ajax({
-
-    url: "/objects/textures",
-    method: "GET"
-  }).done(function (data) {
-    for (var i = 0; i < data.length; i++) {
-      var $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-patt").attr("data-src", data[i].file_path + data[i].file_name).attr("data-drag", false)
-        .attr("data-width", c.width).attr("data-height", c.height).attr("data-x", 0).attr("data-y", 0).attr("data-name", "texture").attr("data-type", "texture")
-        .attr("src", data[i].file_path + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name).attr("data-obj-id", data[i].id);
-
-      $("#textures").append($imgThumbnail);
-
-    }
-  });
-
-  //load Artwork
-  $.ajax({
-    url: "/objects/artwork",
-    method: "GET"
-  }).done(function (data) {
-    for (var i = 0; i < data.length; i++) {
-      var $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-art").attr("data-src", data[i].file_path + data[i].file_name).attr("data-drag", true).attr("data-height", data[i].height)
-        .attr("data-width", data[i].width).attr("data-x", 100).attr("data-y", 20).attr("data-name", data[i].obj_name).attr("data-copy", 1)
-        .attr("data-type", "art").attr("src", data[i].file_path + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name).attr("data-obj-id", data[i].id);
-
-      $("#artwork").append($imgThumbnail);
-
-    }
-  });
-
-  //load Furniture
-  $.ajax({
-    url: "/objects/furniture",
-    method: "GET"
-  }).done(function (data) {
-    for (var i = 0; i < data.length; i++) {
-      var $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-furn").attr("data-src", data[i].file_path + data[i].file_name).attr("data-drag", true).attr("data-height", data[i].height)
-        .attr("data-width", data[i].width).attr("data-x", 100).attr("data-y", 100).attr("data-name", data[i].obj_name).attr("data-copy", 1)
-        .attr("data-type", "furn").attr("src", data[i].file_path + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name).attr("data-obj-id", data[i].id);
-
-      $("#furniture").append($imgThumbnail);
-
-    }
-  });
-
-  // canvas.detectPixelRatio();
-  // canvas.restoreCanvas();
 
   $('#btnRegister').on('click', function () {
 
@@ -647,27 +558,36 @@ $(document).ready(function () {
 
   });
 
-  $(document).on("click", ".img-base", function (e, h, w, t, l) {
+  // $(document).on("click", ".img-base", function (e, h, w, t, l) {
+  $(document).on("click", ".img-base", function () {
     var height;
     var width;
     var top;
     var left;
 
-    if (h) height = h;
-    else height = $(this).data("height");
+    //commented out because height and width doesn't need to be defined, 
+    //base images should just conform to the canvas' height and width
+    
+    // if (h) height = h;
+    // else height = $(this).data("height");
 
-    if (w) width = w;
-    else width = $(this).data("width");
+    // if (w) width = w;
+    // else width = $(this).data("width");
 
-    if (t) top = t;
-    else top = $(this).data("y");
+    // if (t) top = t;
+    // else top = $(this).data("y");
 
-    if (l) left = l;
-    else left = $(this).data("x");
+    // if (l) left = l;
+    // else left = $(this).data("x");
 
-    if (floorMode) canvas.removeLayer("floor");
-    if (roomMode) canvas.removeLayer("room");
-    if (decorMode) canvas.removeLayer("decor");
+    height = $(this).data("height");
+    width = $(this).data("width");
+    top = $(this).data("y");
+    left = $(this).data("x");
+
+    if (floorMode) $canvas.removeLayer("floor");
+    if (roomMode) $canvas.removeLayer("room");
+    if (decorMode) $canvas.removeLayer("decor");
 
     floorMode = false;
     decorMode = false;
@@ -676,8 +596,8 @@ $(document).ready(function () {
     var objIndex;
 
     if ($(this).data("type") === "room") {
-      if (colorExists) canvas.removeLayer("color");
-      if (textureExists) canvas.removeLayer("texture");
+      if (colorExists) $canvas.removeLayer("color");
+      if (textureExists) $canvas.removeLayer("texture");
       colorExists = false;
       textureExists = false;
       objIndex = 0;
@@ -701,7 +621,7 @@ $(document).ready(function () {
         break;
     }
 
-    canvas.addLayer({
+    $canvas.addLayer({
       type: "image",
       name: $(this).data("name"),
       source: $(this).data("src"),
@@ -743,7 +663,7 @@ $(document).ready(function () {
     var objIndex;
     var layerName = $(this).data("name") + "_" + $(this).data("copy");
 
-    canvas.addLayer({
+    $canvas.addLayer({
       type: "image",
       name: layerName,
       source: $(this).data("src"),
@@ -786,7 +706,7 @@ $(document).ready(function () {
         if ((colorExists && !(textureExists)) || (!(colorExists) && textureExists)) objIndex = 1;
         if (!(colorExists) && !(textureExists)) objIndex = 0;
       }
-      canvas.moveLayer(layerName, objIndex).drawLayers();
+      $canvas.moveLayer(layerName, objIndex).drawLayers();
     }
 
     //increment copy number so if the same image is added to canvas, it will take on the next copy number
@@ -800,7 +720,7 @@ $(document).ready(function () {
     patt_type = $(this).data("type");
     patt_obj_id = $(this).data("obj-id");
 
-    patt = canvas.createPattern({
+    patt = $canvas.createPattern({
       source: $(this).data("src"),
       repeat: "repeat",
       load: draw
@@ -811,28 +731,32 @@ $(document).ready(function () {
   $(document).on("click", ".no-texture", function () {
     textureExists = false;
 
-    canvas.setLayer("color", {
+    $canvas.setLayer("color", {
       opacity: 1
     });
 
-    canvas.removeLayer("texture").drawLayers();
+    $canvas.removeLayer("texture").drawLayers();
   });
 
   $(document).on("click", "#delete-obj", function () {
 
-    canvas.removeLayer(delLayer).drawLayers();
+    $canvas.removeLayer(delLayer).drawLayers();
 
   });
 
-  var button = document.getElementById('btn-download');
+  $('#btn-clear').on('click', function () {
 
-  button.addEventListener('click', function (e) {
+    clearCanvas();
+
+  });
+
+  $(document).on("click", "#btn-download", function (e) {
+
     checkUser();
     if (appLoggedIn) {
       var fileName = "Showroom_" + moment().format("YYYY-MM-DD-h:mm:ss");
-      $(this).attr("download", fileName);
-      var dataURL = c.toDataURL('image/png');
-      button.href = dataURL;
+      var dataURL = vCanvas.toDataURL('image/png');
+      $(this).attr("download", fileName).attr("href", dataURL);
     } else $("#login-modal").modal("toggle");
   });
 
@@ -842,8 +766,8 @@ $(document).ready(function () {
     if (appLoggedIn) {
 
       //prompt user for showroom name if new, or if they want to save as new name
-      if (currentShowroomName) {
-        $("#curr-showroom").text(currentShowroomName);
+      if (currentShowroom.showroom_name) {
+        $("#curr-showroom").text(currentShowroom.showroom_name);
         $("#save-new").addClass("hidden");
         $("#save-existing").removeClass("hidden");
         $("#save-modal").modal("toggle");
@@ -882,6 +806,18 @@ $(document).ready(function () {
 
   }
 
+  function ajaxDelLayers(parm) {
+    //send request to delete layers
+    $.ajax({
+      url: "/showrooms/delete_layers/" + parm,
+      method: "DELETE"
+    }).done(function (data) {
+      //check for success
+      console.log(data);
+    });
+
+  }
+
   function saveLayers(showroomId) {
     var parmLayer = {
       name: "",
@@ -900,7 +836,7 @@ $(document).ready(function () {
 
     //create layers
 
-    var l = canvas.getLayers(function (layer) {
+    var l = $canvas.getLayers(function (layer) {
       return (layer.name);
     });
 
@@ -940,17 +876,23 @@ $(document).ready(function () {
     var showroomReturnData;
     var layerReturnData;
     var parmObj = {
-      showroom_id: 0,
+      showroom_id:0,
+      showroom_height: 0,
+      showroom_width: 0,
       showroom_name: "",
+      canvas_id:0,
+      file_path: "",
+      file_name: "", 
       user_id: 0
     };
 
-    if ((currentShowroomName) && (parmShowroomName == "")) {
+
+    if ((currentShowroom.showroom_name) && ((parmShowroomName == "") || (parmShowroomName == currentShowroom.showroom_name))) {
       //we are updating a current showroom
-      parmShowroomId = currentShowroomId;
-      parmShowroomName = currentShowroomName;
+      parmShowroomId = currentShowroom.id;
+      parmShowroomName = currentShowroom.showroom_name;
       reqType = "PUT"
-    } else if (!(currentShowroomName)) {
+    } else if (!(currentShowroom.showroom_name)) {
       //we are creating a brand new showroom
       parmShowroomId = 0;
       reqType = "POST"
@@ -963,14 +905,20 @@ $(document).ready(function () {
     var sessionData = JSON.parse(sessionStorage.userSession);
 
     parmObj.showroom_id = parmShowroomId;
+    parmObj.showroom_height = vCanvas.height;
+    parmObj.showroom_width = vCanvas.width;
     parmObj.showroom_name = parmShowroomName;
+    parmObj.canvas_id = 1;
+    parmObj.file_path = "";
+    parmObj.file_name = "";
     parmObj.user_id = sessionData.user_id;
 
     //create showroom if necessary
     if (reqType == "POST") {
       ajaxSaveShowroom(ajaxURL, parmObj, reqType);
     } else {
-      //****************delete original layers for parmShowroomId*****************************
+      //delete original layers and save the new ones
+      ajaxDelLayers(parmShowroomId);
       saveLayers(parmShowroomId);
     }
 
@@ -1012,10 +960,10 @@ $(document).ready(function () {
       var colorIndex;
       var colorOpacity;
 
-      canvas.removeLayer("color");
+      $canvas.removeLayer("color");
 
       if (textureExists) {
-        canvas.setLayer("texture", {
+        $canvas.setLayer("texture", {
           opacity: 1
         });
         colorIndex = 1;
@@ -1026,7 +974,7 @@ $(document).ready(function () {
       }
 
 
-      canvas.addLayer({
+      $canvas.addLayer({
         name: "color",
         type: "rectangle",
         fillStyle: color.toHexString(),
@@ -1039,8 +987,8 @@ $(document).ready(function () {
         index: colorIndex,
         x: 0,
         y: 0,
-        width: c.width,
-        height: c.height
+        width: vCanvas.width,
+        height: vCanvas.height
       }).drawLayers();
 
       colorExists = true;
@@ -1064,9 +1012,9 @@ $(document).ready(function () {
     ]
   });
 
-  // $(document).on("resize", canvas, function () {
+  // $(document).on("resize", $canvas, function () {
 
-  //   canvas.drawLayers();
+  //   $canvas.drawLayers();
 
   // });
 
@@ -1243,22 +1191,28 @@ $(document).ready(function () {
     });
   })
 
+  $("#home").on("click", function () {
+    var currentURL = window.location.origin;
+
+    window.location = currentURL + "/app"
+
+  });
 
   $("#how-To").on("click", function () {
     $("#how-To-Modal").modal("toggle");
   });
 
-  $("#team").on("click", function () {
+  $("#about").on("click", function () {
     var currentURL = window.location.origin;
 
-    window.location= currentURL + "/app/team"
+    window.location = currentURL + "/app/about"
 
   });
 
   $("#contact").on("click", function () {
     var currentURL = window.location.origin;
 
-    window.location= currentURL + "/app/contact"
+    window.location = currentURL + "/app/contact"
 
   });
 
