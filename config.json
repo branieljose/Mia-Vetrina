@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "root",
-    "database": "sqlz_burger_db",
+    "database": "impulso_db",
     "host": "localhost",
     "dialect": "mysql"
   },

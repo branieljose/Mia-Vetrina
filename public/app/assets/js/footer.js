@@ -1,27 +1,27 @@
 var connections = [
     // github = {
     //     link: "#",
-    //     imgSrc: "assets/images/github.png"
+    //     imgSrc: "app/assets/images/github.png"
     // },
     // linkedin = {
     //     link: "#",
-    //     imgSrc: "assets/images/LinkedIn.png"
+    //     imgSrc: "app/assets/images/LinkedIn.png"
     // },
     // stackFlow = {
     //     link: "#",
-    //     imgSrc: "assets/images/stackoverflow.png"
+    //     imgSrc: "app/assets/images/stackoverflow.png"
     // },
     facebook = {
         link: "#",
-        imgSrc: "assets/images/Facebook.png"
+        imgSrc: "app/assets/images/Facebook.png"
     },
     twitter = {
         link: "#",
-        imgSrc: "assets/images/Twitter.png"
+        imgSrc: "app/assets/images/Twitter.png"
     },
     instagram = {
         link: "#",
-        imgSrc: "assets/images/Intsagram.png"
+        imgSrc: "app/assets/images/Intsagram.png"
     }
 ];
 

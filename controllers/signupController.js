@@ -10,15 +10,6 @@ var user = require("../models/user.js");
 //setting up router for implementation
 var router = express.Router();
 
-// var connection = mysql.createConnection({
-// 	host: "localhost",
-// 	user: "root",
-// 	password: "root",
-// 	port: 3306,
-// 	database: "impulso_db"
-// });
-
-
 //setting up the packages to be used by express 
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({
@@ -30,7 +21,7 @@ router.use(bodyParser.json({
 }));
 
 
-//
+
 router.get("/", function (request, response) {
 	response.sendFile(path.join(__dirname, "../public/app/signin.html"));
 
@@ -41,7 +32,6 @@ router.get('/sign_out', function(req,res) {
      res.send(true)
   });
 });
-
 
 
 router.post('/user_login', function (req, res) {

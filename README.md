@@ -4,7 +4,9 @@ Impulso project repo.
 RCB Group Project 2<br>
 
 #Impulso
-		
+
+<a href="https://media.giphy.com/media/3og0IH1TltdDe2vdh6/giphy.gif" target="_blank"><img src="https://media.giphy.com/media/3og0IH1TltdDe2vdh6/giphy.gif" ></a>
+<a href="https://media.giphy.com/media/3og0IJ9I1kL72YwiJi/source.gif" target="_blank"><img src="https://media.giphy.com/media/3og0IJ9I1kL72YwiJi/giphy.gif" ></a>		
 
 ##Type of App:
 **Web App** 

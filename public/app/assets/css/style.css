@@ -2,7 +2,7 @@
   box-sizing: border-box;
 }
 
-@keyframes fadein {
+/*@keyframes fadein {
   from {
     opacity: 0;
   }
@@ -20,11 +20,11 @@
   }
 }
 
-.navbar {
+.navbar, .navbar-lg, .navbar-sm {
   -webkit-transition: all .5s;
   -moz-transition: all .5s;
   transition: all .5s;
-}
+}*/
 
 
 /*.logo {
@@ -32,7 +32,7 @@
     -moz-transition: all .5s;
     transition: all .5s;
 }*/
-
+/*
 .byname-sm,
 .byname-lg {
   -webkit-transition: all .5s;
@@ -42,23 +42,20 @@
 
 .fade-out {
   animation-name: fadeout;
-  animation-duration: .5s;
+  animation-duration: .1s;
 }
 
 .fade-in {
   animation-name: fadein;
   animation-duration: .5s;
 }
-
-.logo-lg {
+*/
+/*.logo-lg {
   margin: -87px 0 0px -160px;
-  /* play with these to position the image */
-  /*position:absolute;*/
   z-index: 100;
   width: 190px;
-  /*background-color: #fff;*/
   padding: 5px;
-}
+}*/
 
 .logo-sm {
   margin: -64px 0 0px -160px;
@@ -70,20 +67,20 @@
   padding: 5px;
 }
 
-.navbar-lg {
+/*.navbar-lg {
   height: 150px;
-}
+}*/
 
 .navbar-sm {
   height: 100px;
 }
 
-.byname-lg {
+/*.byname-lg {
   position: relative;
   top: -10px;
   left: 0px;
   font-size: 35px;
-}
+}*/
 
 .byname-sm {
   position: relative;
@@ -135,7 +132,7 @@
 
 .logo-font {
   font-family: "Roboto", "San Serif";
-  font-weight: 100;
+  font-weight: 900;
 }
 
 .user {
@@ -148,9 +145,13 @@
   
 }
 
-.byname:hover {
-  color: #222222;
+#home:hover {
+  color: white;
 }
+
+/*.byname:hover {
+  color: #222222;
+}*/
 
 .nav-links {
   /*font-family: 'Russo One', sans-serif;*/
@@ -227,6 +228,30 @@ h1 {
   padding-left: 0px;
 }
 
+.paint-container {
+  margin-bottom: -5px;
+}
+
+/*.paint-picker {
+  position: relative;
+  top: -10px;
+  margin-bottom: -4px;
+  }*/
+
+.paint-color {
+  margin-left: 25px;
+  font-size: 14px;
+}
+
+.paint-brand {
+  float: left;
+  margin-right: 5px;
+  margin-left: 22px;
+  /*position: relative;
+  top: -10px;
+  margin-bottom: -4px;*/
+  }
+
 .control-label {
   padding-right: 10px;
   padding-left: 10px;
@@ -238,6 +263,7 @@ h1 {
 
 #btn-palette {
   width: 270px;
+  height: 34px;
   text-align: left;
 }
 
@@ -299,6 +325,25 @@ div#OR {
   /*min-height: 100px;*/
 }
 
+.modal-header, .modal-footer {
+  border-bottom: 1px solid black;
+  background-color: #d9d9d9;
+}
+
+.modal-footer {
+  border-top: 1px solid black;
+  margin-left: -15px;  
+  margin-right: -15px;  
+
+}
+
+.modal-body {
+/*  padding-left: 0px;
+  padding-right: 0px;*/
+  padding-bottom: 0px;
+  background-color: #f2f2f2;
+}
+
 .navbar>.container .navbar-brand,
 .navbar>.container-fluid .navbar-brand {
   margin-left: 20px;
@@ -317,6 +362,10 @@ div#OR {
 
 .tab-padding {
   padding: 5px 15px;
+}
+
+.del-showroom, .del-showroom-text {
+  display: inline-block;
 }
 
 #user-container {
@@ -375,7 +424,9 @@ div#OR {
 }
 
 .sp-replacer {
-  border: solid 1px #666666;
+    border: solid 2px #333;
+    border-radius: 3px;
+    margin-top: 1px;
 }
 
 .sp-input-container {
@@ -383,7 +434,8 @@ div#OR {
 }
 
 .sp-replacer:hover {
-  border: solid 1px #222222;
+  border: solid 2px #222222;
+  border-radius: 3px;
   background-color: white;
   color: #222222;
 }
@@ -415,9 +467,20 @@ div#OR {
   cursor: pointer;
 }
 
+.tn-showroom {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .sideways>li {
   height: 0px;
-  width: 100px;
+  width: 85px;
+  margin-bottom: 85px;
+}
+
+.tabs-right>li {
+    margin-left: 0px;
 }
 
 .full-spectrum .sp-palette {
@@ -440,12 +503,10 @@ div#OR {
 }
 
 #my-showrooms {
-  background-color: white;
-  border: 1px black solid;
   padding: 20px;
   display: block;
-  margin-right: auto;
-  margin-left: auto;
+  /*margin-right: auto;
+  margin-left: auto;*/
   margin-top: 40px;
   margin-bottom: 40px;
   font-family: "Roboto", "San Serif";
@@ -460,7 +521,7 @@ div#OR {
 #my-showrooms>h2,
 h3,
 h4 {
-  font-weight: 900;
+  font-weight: 300;
 }
 
 .my-showroom {
@@ -498,11 +559,6 @@ h4 {
   text-align: center;
 }
 
-.paint-container {
-  font-family: "Roboto", "San Serif";
-  font-weight: 900;
-}
-
 .clearfix {
   clear: both;
 }
@@ -511,7 +567,29 @@ h4 {
   display: none;
 }
 
+#canvas-toolbar {
+  height: 50px;
+  position: relative;
+  top: 10px;
+  background-color: rgba(0, 0, 0, 1);
+}
 
+.left-tool {
+float: left;
+}
+
+.right-tool {
+float: right;
+}
+
+.tool {
+height: 50px;
+color:white;
+font-weight: 100;
+padding: 13px 0px 7px 0px;
+margin: 0px 5px 0px 10px;
+cursor: pointer;
+}
 /* Sticky footer styles
 -------------------------------------------------- */
 
@@ -524,7 +602,7 @@ body {
   /* Margin bottom by footer height */
   background-color: #f2f2f2;
   margin-bottom: 80px;
-  margin-top: 150px
+  margin-top: 100px
 }
 
 .footer {
@@ -568,148 +646,40 @@ body {
 
 @media screen and (min-width: 768px) {
 
-.byname-lg {
+.byname-sm {
   position: relative;
-  top: 0px;
+  top: -57px;
   left: 0px;
   font-size: 20px;
 }
 
-.byname-sm {
-  position: relative;
-  top: -55px;
-  left: 0px;
+.byname {
   font-size: 20px;
-}
-
-.account-container {
-  min-width: 200px;
-}
-
-  .nav-links, #user-name {
-    font-size: 15px;
-  }
-}
-
-
-@media screen and (min-width: 1300px) {
-
-.byname-lg {
-  position: relative;
-  top: 0px;
-  left: 0px;
-  font-size: 25px;
-}
-
-.byname-sm {
-  position: relative;
-  top: -55px;
-  left: 0px;
-  font-size: 25px;
-}
-
-.account-container {
-  min-width: 200px;
-}
-
-  .nav-links, #user-name {
-    font-size: 15px;
-  }
-}
-
-@media screen and (min-width: 1550px) {
-
-.byname-lg {
   position: relative;
   top: 5px;
-  left: 0px;
-  font-size: 30px;
 }
 
-.byname-sm {
-  position: relative;
-  top: -50px;
-  left: 0px;
-  font-size: 30px;
+#btn-palette {
+  width: 200px;
+  height: 34px;
+  font-size: 10px;
+  padding: 6px 6px;
+  text-align: left;
+}
+
+.paint-color {
+    font-size: 10px;
 }
 
 .account-container {
   min-width: 200px;
+  margin-left: 50px;
 }
 
   .nav-links, #user-name {
     font-size: 15px;
   }
 }
-
-@media screen and (min-width: 1800px) {
-.byname-lg {
-  position: relative;
-  top: 0px;
-  left: 0px;
-  font-size: 30px;
-}
-
-.byname-sm {
-  position: relative;
-  top: -50px;
-  left: 0px;
-  font-size: 30px;
-}
-
-  .nav-links, #user-name {
-    font-size: 20px;
-  }
-}
-
-@media screen and (min-width: 2500px) {
-.byname-lg {
-  position: relative;
-  top: -10px;
-  left: 0px;
-  font-size: 35px;
-}
-
-.byname-sm {
-  position: relative;
-  top: -60px;
-  left: 0px;
-  font-size: 35px;
-}
-
-  .nav-links, #user-name {
-    font-size: 25px;
-  }
-}
-
-
-/* ik code */
-
-
-/*#footer {
-  position:fixed;
-  left:0px;
-  bottom:0px;
-  height:20px;
-
-  width:100%;
-  background:#999;
-}*/
-
-
-/* IE 6 */
-
-
-/** html #footer {
-  position:absolute;
-  top:expression((0-(footer.offsetHeight)+(document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body.clientHeight)+(ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop))+'px');
-}*/
-
-
-/*#footer_push {
-       clear: both;
-       height: 20px;
-     }*/
 
 .img-circle {
   border-radius: 50%;
@@ -773,4 +743,115 @@ body {
 
 .other-nav-links a {
   color: #666666;
+}
+@media screen and (min-width: 1275px) and (max-width: 1350px) {
+
+.col-custom-1350 {
+  width: 50%;
+}
+
+#btn-palette {
+  width: 200px;
+  height: 34px;
+  font-size: 10px;
+  padding: 6px 6px;
+  text-align: left;
+}
+
+.paint-color {
+    font-size: 10px;
+}
+
+}
+
+@media screen and (min-width: 1550px) {
+
+/*.byname-lg {
+  position: relative;
+  top: -75px;
+  left: 0px;
+  font-size: 25px;
+}*/
+
+.byname-sm {
+  position: relative;
+  top: -57px;
+  left: 0px;
+  font-size: 30px;
+}
+
+.byname {
+  font-size: 30px;
+}
+
+.account-container {
+  min-width: 200px;
+}
+
+  .nav-links, #user-name {
+    font-size: 15px;
+  }
+}
+
+@media screen and (min-width: 1600px) {
+
+#btn-palette {
+  width: 270px;
+  height: 34px;
+  font-size: 14px;
+  text-align: left;
+}
+
+.paint-color {
+    font-size: 14px;
+}
+
+}
+
+@media screen and (min-width: 1800px) {
+/*.byname-lg {
+  position: relative;
+  top: -70x;
+  left: 0px;
+  font-size: 30px;
+}*/
+
+.byname-sm {
+  position: relative;
+  top: -61px;
+  left: 0px;
+  font-size: 30px;
+}
+
+.byname {
+  font-size: 30px;
+}
+
+  .nav-links, #user-name {
+    font-size: 20px;
+  }
+}
+
+@media screen and (min-width: 2500px) {
+/*.byname-lg {
+  position: relative;
+  top: -85px;
+  left: 0px;
+  font-size: 35px;
+}*/
+
+.byname-sm {
+  position: relative;
+  top: -65px;
+  left: 0px;
+  font-size: 35px;
+}
+
+.byname {
+  font-size: 35px;
+}
+
+  .nav-links, #user-name {
+    font-size: 25px;
+  }
 }

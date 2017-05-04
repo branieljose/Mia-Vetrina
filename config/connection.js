@@ -10,7 +10,7 @@ if(process.env.JAWSDB_URL){
   		host: "localhost",
   		user: "root",
   		password: "",
-  		port: PORT,
+  		port: 3306,
   		database: "impulso_db"
   });
 };

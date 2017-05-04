@@ -281,21 +281,21 @@ $(document).ready(function () {
   $("#home").on("click", function () {
     var currentURL = window.location.origin;
 
-    window.location= currentURL + "/app"
+    window.location= currentURL + "/"
 
   });
 
   $("#about").on("click", function () {
     var currentURL = window.location.origin;
 
-    window.location= currentURL + "/app/about"
+    window.location= currentURL + "/about"
 
   });
 
   $("#contact").on("click", function () {
     var currentURL = window.location.origin;
 
-    window.location= currentURL + "/app/contact"
+    window.location= currentURL + "/contact"
 
   });
 
