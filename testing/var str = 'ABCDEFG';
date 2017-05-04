@@ -1,9 +1,0 @@
-var str = 'ABCDEFG';
-var arr = [];
-var j   = 0;
-
-for (var i=str.length; i>0; i--){
-	j++; 
-	arr[j].push(str[i]);
-}
-console.log(arr); 
