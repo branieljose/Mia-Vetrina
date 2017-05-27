@@ -1,9 +1,3 @@
-## What's Mia Vetrina?
-
-Mia Vetrina is a tool created for artist and photographers, it counts with a large collection of plain rooms, furniture and art work. It also has a large color pallet which features colors from reconized paint companies such as Bejamin Moore and Sherwin Williams.
-
-## 
-- Users can create 
 
 # impulso
 MIΛ VETRINΛ by impulso - project repo. 
@@ -47,4 +41,4 @@ A web app that allows users to design virtual rooms for multiple purposes. As an
 *   [Frank Villafane](https://github.com/urbanviewphoto)
 *   [Ivonne Komis](https://github.com/IvonneK)
 *   [Vincent Visconti](https://github.com/VinnyV88)
-1 Comment Collaps
+
